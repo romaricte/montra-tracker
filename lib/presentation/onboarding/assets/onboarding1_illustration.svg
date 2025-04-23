@@ -1,0 +1,26 @@
+<svg width="343" height="253" viewBox="0 0 343 253" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect width="343" height="253" rx="40" fill="#C4C4C4"/>
+<g clip-path="url(#clip0_1271_5641)">
+  <path d="M171.5 126.5C171.5 126.5 200 100 230 120C260 140 280 110 280 110" stroke="#FFCF99" stroke-width="2"/>
+  <path d="M171.5 146.5C171.5 146.5 200 120 230 140C260 160 280 130 280 130" stroke="#FFCF99" stroke-width="2"/>
+  <path d="M171.5 166.5C171.5 166.5 200 140 230 160C260 180 280 150 280 150" stroke="#FFCF99" stroke-width="2"/>
+  
+  <!-- Hand holding money -->
+  <path d="M180 180C180 180 160 190 150 170C140 150 160 140 180 150C200 160 190 180 180 180Z" fill="#FEE3C8"/>
+  <path d="M165 160C165 160 170 155 180 160C190 165 185 175 180 175C175 175 170 170 165 160Z" fill="#F9DB9F"/>
+  
+  <!-- Money bills -->
+  <rect x="120" y="100" width="60" height="40" rx="5" fill="#EEE5FF"/>
+  <rect x="130" y="110" width="40" height="20" rx="3" fill="#D3BDFF"/>
+  <circle cx="150" cy="120" r="10" fill="#7F3DFF"/>
+  
+  <!-- Money coin -->
+  <circle cx="200" cy="90" width="30" height="30" r="15" fill="#D3BDFF"/>
+  <circle cx="200" cy="90" r="10" fill="#7F3DFF"/>
+</g>
+<defs>
+<clipPath id="clip0_1271_5641">
+<rect width="343" height="253" rx="40" fill="white"/>
+</clipPath>
+</defs>
+</svg>
