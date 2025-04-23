@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:montra_tracker/core/constants/image_constants.dart';
 
 class Onboarding1 extends StatefulWidget {
   const Onboarding1({super.key});
@@ -28,8 +29,8 @@ class _Onboarding1State extends State<Onboarding1> {
               Expanded(
                 flex: 5,
                 child: Center(
-                  child: SvgPicture.asset(
-                    'lib/presentation/onboarding/assets/onboarding1_illustration.svg',
+                  child: Image.asset(
+                    ImageConstants.onboarding1,
                     width: size.width * 0.9,
                   ),
                 ),
