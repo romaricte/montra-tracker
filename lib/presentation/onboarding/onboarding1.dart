@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:montra_tracker/core/constants/image_constants.dart';
+import 'package:get/get.dart';
+
 
 class Onboarding1 extends StatefulWidget {
   const Onboarding1({super.key});
@@ -10,6 +12,37 @@ class Onboarding1 extends StatefulWidget {
 }
 
 class _Onboarding1State extends State<Onboarding1> {
+  // Contrôleur pour gérer le PageView
+  final PageController _pageController = PageController();
+  // Index de la page actuelle
+  int _currentPage = 0;
+
+  // Liste des données pour chaque page d'onboarding
+  final List<Map<String, String>> _onboardingData = [
+    {
+      'image': ImageConstants.onboarding1,
+      'title': 'Gain total control\nof your money',
+      'subtitle': 'Become your own money manager and make every cent count',
+    },
+    {
+      'image': ImageConstants.onboarding2, // Remplacer par la deuxième image
+      'title': 'Know where your\nmoney goes',
+      'subtitle': 'Track your transactions easily, with categories and financial report',
+    },
+    {
+      'image': ImageConstants.onboarding3, // Remplacer par la troisième image
+      'title': 'Planning ahead',
+      'subtitle': 'Setup your budget for each category so youre in control',
+    },
+  ];
+
+  @override
+  void dispose() {
+    // Libérer les ressources du contrôleur
+    _pageController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     // Obtenir les dimensions de l'écran pour un design responsive
@@ -25,55 +58,52 @@ class _Onboarding1State extends State<Onboarding1> {
               // Barre d'état (simulée)
               const SizedBox(height: 12),
               
-              // Illustration
+              // Zone de défilement avec PageView
               Expanded(
                 flex: 5,
-                child: Center(
-                  child: Image.asset(
-                    ImageConstants.onboarding1,
-                    width: size.width * 0.9,
-                  ),
+                child: PageView.builder(
+                  controller: _pageController,
+                  onPageChanged: (index) {
+                    setState(() {
+                      _currentPage = index;
+                    });
+                  },
+                  itemCount: _onboardingData.length,
+                  itemBuilder: (context, index) {
+                    return Center(
+                      child: Image.asset(
+                        _onboardingData[index]['image']!,
+                        width: size.width * 0.9,
+                      ),
+                    );
+                  },
                 ),
               ),
               
               // Indicateurs de page
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Container(
+                children: List.generate(
+                  _onboardingData.length,
+                  (index) => Container(
                     width: 8,
                     height: 8,
-                    decoration: const BoxDecoration(
-                      color: Color(0xFF7F3DFF), // Violet actif
+                    margin: const EdgeInsets.symmetric(horizontal: 4),
+                    decoration: BoxDecoration(
+                      color: _currentPage == index 
+                          ? const Color(0xFF7F3DFF) // Violet actif
+                          : const Color(0xFFEEE5FF), // Violet clair inactif
                       shape: BoxShape.circle,
                     ),
                   ),
-                  const SizedBox(width: 8),
-                  Container(
-                    width: 8,
-                    height: 8,
-                    decoration: const BoxDecoration(
-                      color: Color(0xFFEEE5FF), // Violet clair inactif
-                      shape: BoxShape.circle,
-                    ),
-                  ),
-                  const SizedBox(width: 8),
-                  Container(
-                    width: 8,
-                    height: 8,
-                    decoration: const BoxDecoration(
-                      color: Color(0xFFEEE5FF), // Violet clair inactif
-                      shape: BoxShape.circle,
-                    ),
-                  ),
-                ],
+                ),
               ),
               
               const SizedBox(height: 32),
               
               // Texte principal
               Text(
-                'Gain total control\nof your money',
+                _onboardingData[_currentPage]['title']!,
                 textAlign: TextAlign.center,
                 style: const TextStyle(
                   fontFamily: 'Inter',
@@ -88,7 +118,7 @@ class _Onboarding1State extends State<Onboarding1> {
               
               // Sous-titre
               Text(
-                'Become your own money manager and make every cent count',
+                _onboardingData[_currentPage]['subtitle']!,
                 textAlign: TextAlign.center,
                 style: const TextStyle(
                   fontFamily: 'Inter',
@@ -101,13 +131,23 @@ class _Onboarding1State extends State<Onboarding1> {
               
               const SizedBox(height: 32),
               
-              // Bouton d'inscription
+              // Bouton d'inscription ou bouton suivant
               SizedBox(
                 width: double.infinity,
                 height: 56,
                 child: ElevatedButton(
                   onPressed: () {
-                    // Navigation vers l'écran d'inscription
+                    // Si on est sur la dernière page, naviguer vers l'inscription
+                    // Sinon, passer à la page suivante
+                    if (_currentPage == _onboardingData.length - 1) {
+                      Get.toNamed('/register');
+                      // Navigation vers l'écran d'inscription
+                    } else {
+                      _pageController.nextPage(
+                        duration: const Duration(milliseconds: 300),
+                        curve: Curves.easeInOut,
+                      );
+                    }
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: const Color(0xFF7F3DFF),
@@ -117,9 +157,9 @@ class _Onboarding1State extends State<Onboarding1> {
                     ),
                     elevation: 0,
                   ),
-                  child: const Text(
-                    'Sign Up',
-                    style: TextStyle(
+                  child: Text(
+                    _currentPage == _onboardingData.length - 1 ? 'S\'inscrire' : 'Suivant',
+                    style: const TextStyle(
                       fontFamily: 'Inter',
                       fontSize: 18,
                       fontWeight: FontWeight.w600,
@@ -128,30 +168,34 @@ class _Onboarding1State extends State<Onboarding1> {
                 ),
               ),
               
-              const SizedBox(height: 16),
-              
-              // Bouton de connexion
-              SizedBox(
-                width: double.infinity,
-                height: 56,
-                child: ElevatedButton(
-                  onPressed: () {
-                    // Navigation vers l'écran de connexion
-                  },
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: const Color(0xFFEEE5FF),
-                    foregroundColor: const Color(0xFF7F3DFF),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(16),
-                    ),
-                    elevation: 0,
-                  ),
-                  child: const Text(
-                    'Login',
-                    style: TextStyle(
-                      fontFamily: 'Inter',
-                      fontSize: 18,
-                      fontWeight: FontWeight.w600,
+              // Bouton de connexion (visible uniquement sur la dernière page)
+              Visibility(
+                visible: _currentPage == _onboardingData.length - 1,
+                child: Padding(
+                  padding: const EdgeInsets.only(top: 16.0),
+                  child: SizedBox(
+                    width: double.infinity,
+                    height: 56,
+                    child: ElevatedButton(
+                      onPressed: () {
+                        // Navigation vers l'écran de connexion
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: const Color(0xFFEEE5FF),
+                        foregroundColor: const Color(0xFF7F3DFF),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(16),
+                        ),
+                        elevation: 0,
+                      ),
+                      child: const Text(
+                        'Se connecter',
+                        style: TextStyle(
+                          fontFamily: 'Inter',
+                          fontSize: 18,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
                     ),
                   ),
                 ),

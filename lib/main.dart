@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'presentation/onboarding/onboarding1.dart';
+import 'routes/appRoutes.dart';
 
 void main() {
   runApp(const MyApp());
@@ -11,7 +13,7 @@ class MyApp extends StatelessWidget {
   // Point d'entrée principal de l'application
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
       title: 'Montra Tracker',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
@@ -20,6 +22,7 @@ class MyApp extends StatelessWidget {
         fontFamily: 'Inter',
       ),
       home: const Onboarding1(), // Afficher l'écran d'onboarding comme page d'accueil
+      getPages: AppRoutes.pages
     );
   }
 }
