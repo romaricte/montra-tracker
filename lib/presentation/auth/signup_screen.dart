@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
 class SignupScreen extends StatefulWidget {
   const SignupScreen({super.key});
@@ -94,8 +93,8 @@ class _SignupScreenState extends State<SignupScreen> {
                           height: 24,
                           child: Stack(
                             children: [
-                              SvgPicture.asset('assets/images/eye_icon_1.svg'),
-                              SvgPicture.asset('assets/images/eye_icon_2.svg'),
+                              Image.asset('assets/images/eye_icon_1.svg'),
+                              Image.asset('assets/images/eye_icon_2.svg'),
                             ],
                           ),
                         ),
@@ -366,10 +365,10 @@ class _SignupScreenState extends State<SignupScreen> {
       height: 24,
       child: Stack(
         children: [
-          SvgPicture.asset('assets/images/google_icon_1.svg'),
-          SvgPicture.asset('assets/images/google_icon_2.svg'),
-          SvgPicture.asset('assets/images/google_icon_3.svg'),
-          SvgPicture.asset('assets/images/google_icon_4.svg'),
+          Image.asset('assets/images/google_icon_1.svg'),
+          Image.asset('assets/images/google_icon_2.svg'),
+          Image.asset('assets/images/google_icon_3.svg'),
+          Image.asset('assets/images/google_icon_4.svg'),
         ],
       ),
     );
