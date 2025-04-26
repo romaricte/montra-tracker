@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:montra_tracker/core/constants/image_constants.dart';
 import 'package:get/get.dart';
 
@@ -113,7 +112,7 @@ class _Onboarding1State extends State<Onboarding1> {
                   height: 1.2,
                 ),
               ),
-              
+
               const SizedBox(height: 16),
               
               // Sous-titre
