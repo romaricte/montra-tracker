@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 // Classe représentant l'écran d'ajout d'un nouveau compte.
 class AddNewAccountScreen extends StatefulWidget {
@@ -131,6 +132,7 @@ class _AddNewAccountScreenState extends State<AddNewAccountScreen> {
                     // Bouton pour continuer.
                     ElevatedButton(
                       onPressed: () {
+                        Get.toNamed('/home');
                         // Logique pour ajouter le compte
                       },
                       style: ElevatedButton.styleFrom(

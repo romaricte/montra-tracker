@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 import 'package:montra_tracker/presentation/auth/signup_screen.dart';
+import 'package:montra_tracker/presentation/home/home_screen.dart';
 import 'package:montra_tracker/presentation/onboarding/add_new_account_screen.dart';
 import 'package:montra_tracker/presentation/onboarding/setup_account_screen.dart';
 
@@ -25,6 +26,11 @@ class AppRoutes {
    GetPage(
       name: addNewAccount,
       page: () => const AddNewAccountScreen(),
+      transition: Transition.rightToLeftWithFade,
+    ),
+   GetPage(
+      name: home,
+      page: () => const HomeScreen(),
       transition: Transition.rightToLeftWithFade,
     ),
     
