@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class SignupScreen extends StatefulWidget {
   const SignupScreen({super.key});
@@ -93,8 +94,8 @@ class _SignupScreenState extends State<SignupScreen> {
                           height: 24,
                           child: Stack(
                             children: [
-                              Image.asset('assets/images/eye_icon_1.svg'),
-                              Image.asset('assets/images/eye_icon_2.svg'),
+                            Icon(Icons.visibility_off, color: Colors.black.withOpacity(0.2)),
+                            Icon(Icons.visibility, color: Colors.black.withOpacity(0.2)),
                             ],
                           ),
                         ),
@@ -160,6 +161,7 @@ class _SignupScreenState extends State<SignupScreen> {
                       backgroundColor: const Color(0xFF7F3DFF),
                       textColor: Colors.white,
                       onPressed: () {
+                        Get.toNamed('/setupAccount');
                         // Logique d'inscription
                       },
                     ),
